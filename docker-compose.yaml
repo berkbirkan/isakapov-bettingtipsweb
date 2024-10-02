@@ -4,13 +4,13 @@ services:
  
   web:
     build: .
-    command: flask run --host=0.0.0.0 --port=5007
+    command: flask run --host=0.0.0.0 --port=5017
     environment:
       FLASK_APP: app.py
       FLASK_ENV: development
-      DATABASE_URL:  postgresql://berkbirkan:brkbrkn840?@n4wwwo8:5432/bettipspro
+      DATABASE_URL:  postgresql://postgres:nStVzf5xlG8b8KD0WtgRRaFLtMLvNf1V6qJ8FZ7NRUDSWKazyzATwEAqF06qMgmJ@b0w8oo8g8k8gc04s0s8osow4:5432/postgres
     
     ports:
-      - "5007:5007"
+      - "5017:5017"
     volumes:
       - myimages:/app/assets

@@ -54,7 +54,7 @@ database = 'bettipspro'
 connection_string = f'postgresql://{username}:{password}@{host}:{port}/{database}'
 
 # SQLAlchemy ayarını güncelle
-app.config['SQLALCHEMY_DATABASE_URI'] =  os.getenv("DATABASE_URL", "postgresql://berkbirkan:brkbrkn840?@n4wwwo8:5432/bettipspro")
+app.config['SQLALCHEMY_DATABASE_URI'] =  os.getenv("DATABASE_URL", "postgresql://postgres:nStVzf5xlG8b8KD0WtgRRaFLtMLvNf1V6qJ8FZ7NRUDSWKazyzATwEAqF06qMgmJ@b0w8oo8g8k8gc04s0s8osow4:5432/postgres")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 app.config['MAIL_SERVER'] = 'mail.neuralabz.limited'
@@ -896,4 +896,4 @@ def api_live_scores():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(port=5007,debug=False,host='0.0.0.0')
+    app.run(port=5017,debug=False,host='0.0.0.0')
