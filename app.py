@@ -407,6 +407,9 @@ class APISettingsView(ModelView):
     # Form görünümünde hangi alanların düzenlenebilir olacağını belirliyoruz
     form_columns = ['email', 'api_key', 'is_api_active']
 
+    def is_accessible(self):
+        return current_user.is_authenticated and current_user.is_admin
+
 
 
 admin = Admin(app, name='IsaKapov BettipsPanels', template_mode='bootstrap3', index_view=MyAdminIndexView())
