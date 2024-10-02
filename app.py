@@ -657,7 +657,6 @@ def fetch_live_scores_scheduled():
 
 # Schedule the tasks
 schedule.every(5).minutes.do(fetch_and_store_betting_tips_scheduled)
-schedule.every(1).minutes.do(fetch_live_scores_scheduled)
 schedule.every(1).minutes.do(check_all_premium_users)
 
 
