@@ -29,15 +29,7 @@ import uuid
 from flask import send_from_directory
 
 
-ASSET_BASE_URL = "https://bettipspro.com/assets/"
-LEAGUE_PREFIX = "https://images.tipsterman.com/football/leagues/"
-FLAG_PREFIX = "https://images.tipsterman.com/football/flags/"
-TEAM_PREFIX = "https://images.tipsterman.com/football/teams/"
 
-# Ensure asset directories exist
-os.makedirs('assets/flags', exist_ok=True)
-os.makedirs('assets/teams', exist_ok=True)
-os.makedirs('assets/leagues', exist_ok=True)
 
 
 
