@@ -403,12 +403,14 @@ class LiveScoreUser(ModelView):
 
 
 
-admin = Admin(app, name='BetTipsPro', template_mode='bootstrap3', index_view=MyAdminIndexView())
+admin = Admin(app, name='IsaKapov BettipsPanels', template_mode='bootstrap3', index_view=MyAdminIndexView())
 admin.add_view(UserAdmin(User, db.session))
+admin.add_view(APISettings(APISettings,db.session))
 admin.add_view(BettingTipsUser(BettingTip, db.session, endpoint='betting_tips_user_view'))
 admin.add_view(BettingTipAdmin(BettingTip, db.session))
 admin.add_view(LiveScoreUser(LiveScore, db.session, endpoint='live_scores_user_view'))
 admin.add_view(APIDocumentation(name='API Documentation', endpoint='api_documentation'))
+
 
 
 
