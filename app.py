@@ -536,55 +536,65 @@ def check_all_premium_users():
     #update_user_subscription
 
 
+
 def fetch_and_store_live_scores():
-    with app.app_context():
-        api_url = 'https://json.tipsterman.com/v4/scores'
-        username = 'QU'
-        password = 'pMg5pEWgTXgHbvDCxAXkztCTafq5CQP7'
-        response = requests.get(api_url, auth=(username, password))
+    api_settings = APISettings.query.first()
+    if not api_settings or not api_settings.is_api_active:
+        logger.info("API is inactive. Skipping fetch_and_store_live_scores.")
+        return
 
-        if response.status_code == 200:
-            data = response.json()
-            for match in data.get('football', {}).values():
-                league = match.get('league', {})
-                home_team = match.get('team_home', {})
-                away_team = match.get('team_away', {})
+    api_url = 'https://bettipspro.com/api/live-scores'  # Replace with actual API base URL
+    headers = {
+        "Email": api_settings.email,
+        "API-Key": api_settings.api_key
+    }
 
-                league_name = league.get('name')
-                home_team_name = home_team.get('name')
-                away_team_name = away_team.get('name')
+    response = requests.get(api_url, headers=headers)
 
-                # Check if required fields are present
-                if not all([league_name, home_team_name, away_team_name]):
-                    logger.warning("Missing league or team names in match: %s", match)
-                    continue
+    if response.status_code == 200:
+        data = response.json()
+        for match in data.get('football', {}).values():
+            league = match.get('league', {})
+            home_team = match.get('team_home', {})
+            away_team = match.get('team_away', {})
 
-                try:
-                    live_score = LiveScore(
-                        league_name=league_name,
-                        league_logo=league.get('logo', ''),
-                        league_flag=league.get('flag', ''),
-                        team_home_name=home_team_name,
-                        team_home_logo=home_team.get('logo', ''),
-                        team_away_name=away_team_name,
-                        team_away_logo=away_team.get('logo', ''),
-                        livescore=match.get('livescore', ''),
-                        halftime=match.get('halftime', ''),
-                        fulltime=match.get('fulltime', ''),
-                        elapsed=match.get('elapsed', ''),
-                        status=match.get('status', '')
-                    )
-                    db.session.add(live_score)
-                except Exception as e:
-                    logger.error("Error adding live score to session: %s", e)
+            league_name = league.get('name')
+            home_team_name = home_team.get('name')
+            away_team_name = away_team.get('name')
+
+            # Gerekli alanların mevcut olup olmadığını kontrol et
+            if not all([league_name, home_team_name, away_team_name]):
+                logger.warning("Missing league or team names in match: %s", match)
+                continue
 
             try:
-                db.session.commit()
+                # LiveScore modeline yeni bir veri ekle
+                live_score = LiveScore(
+                    league_name=league_name,
+                    league_logo=league.get('logo', ''),
+                    league_flag=league.get('flag', ''),
+                    team_home_name=home_team_name,
+                    team_home_logo=home_team.get('logo', ''),
+                    team_away_name=away_team_name,
+                    team_away_logo=away_team.get('logo', ''),
+                    livescore=match.get('livescore', ''),
+                    halftime=match.get('halftime', ''),
+                    fulltime=match.get('fulltime', ''),
+                    elapsed=match.get('elapsed', ''),
+                    status=match.get('status', '')
+                )
+                db.session.add(live_score)
             except Exception as e:
-                logger.error("Error committing session: %s", e)
-                db.session.rollback()
-        else:
-            logger.error("Failed to fetch data: %s", response.status_code)
+                logger.error("Error adding live score to session: %s", e)
+
+        try:
+            # Veritabanına eklenen verileri kaydet
+            db.session.commit()
+        except Exception as e:
+            logger.error("Error committing session: %s", e)
+            db.session.rollback()
+    else:
+        logger.error("Failed to fetch data: %s", response.status_code)
 
 
 
@@ -598,6 +608,8 @@ def fetch_and_store_betting_tips_scheduled():
 def fetch_live_scores_scheduled():
     api_settings = APISettings.query.first()
     if api_settings and api_settings.is_api_active:
+        
+
         fetch_and_store_live_scores()
     else:
         logger.info("API is inactive. Skipping fetch_and_store_live_scores.")
