@@ -30,6 +30,7 @@ from flask import send_from_directory
 
 
 
+from flask_admin.form import rules
 
 
 
@@ -265,7 +266,13 @@ class BettingTipAdmin(ModelView):
     def index_view(self):
         if current_user.is_admin:
             return super(BettingTipAdmin, self).index_view()
-        
+
+    # ID'yi formda görünür yapıyoruz
+    form_columns = ['id', 'match_date', 'league_name', 'league_logo', 'league_flag', 
+                    'team_home_name', 'team_home_logo', 'team_away_name', 'team_away_logo',
+                    'prediction_type', 'prediction_name', 'prediction_rate', 'halftime', 
+                    'fulltime', 'odds', 'result']
+
 
 class BettingTipFreeAdmin(ModelView):
     def is_accessible(self):
@@ -275,6 +282,12 @@ class BettingTipFreeAdmin(ModelView):
     def index_view(self):
         if current_user.is_admin:
             return super(BettingTipFreeAdmin, self).index_view()
+
+    # ID'yi formda görünür yapıyoruz
+    form_columns = ['id', 'match_date', 'league_name', 'league_logo', 'league_flag', 
+                    'team_home_name', 'team_home_logo', 'team_away_name', 'team_away_logo',
+                    'prediction_type', 'prediction_name', 'prediction_rate', 'halftime', 
+                    'fulltime', 'odds', 'result']
         
 class BettingTipsUser(ModelView):
     def is_accessible(self):
