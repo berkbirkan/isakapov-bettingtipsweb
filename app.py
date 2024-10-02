@@ -153,6 +153,25 @@ class BettingTip(db.Model):
     odds = db.Column(db.String, nullable=True)
     result = db.Column(db.String, nullable=True)
 
+
+class FreeBettingTip(db.Model):
+    id = db.Column(db.String, primary_key=True)
+    match_date = db.Column(db.DateTime, nullable=False)
+    league_name = db.Column(db.String, nullable=False)
+    league_logo = db.Column(db.String, nullable=True)
+    league_flag = db.Column(db.String, nullable=True)
+    team_home_name = db.Column(db.String, nullable=False)
+    team_home_logo = db.Column(db.String, nullable=True)
+    team_away_name = db.Column(db.String, nullable=False)
+    team_away_logo = db.Column(db.String, nullable=True)
+    prediction_type = db.Column(db.String, nullable=False)
+    prediction_name = db.Column(db.String, nullable=False)
+    prediction_rate = db.Column(db.Float, nullable=False)
+    halftime = db.Column(db.String, nullable=True)
+    fulltime = db.Column(db.String, nullable=True)
+    odds = db.Column(db.String, nullable=True)
+    result = db.Column(db.String, nullable=True)
+
 class LiveScore(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     league_name = db.Column(db.String(120), nullable=False)
