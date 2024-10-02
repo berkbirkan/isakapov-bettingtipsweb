@@ -399,17 +399,25 @@ class LiveScoreUser(ModelView):
         return self.render('live_scores.html', grouped_scores=grouped_scores, league_info=league_info)
 
 
+# Flask-Admin'de ModelView sınıfını kullanarak APISettings modelini ekle
+class APISettingsView(ModelView):
+    # Liste görünümünde gösterilecek sütunları belirliyoruz
+    column_list = ['email', 'api_key', 'is_api_active']
 
+    # Form görünümünde hangi alanların düzenlenebilir olacağını belirliyoruz
+    form_columns = ['email', 'api_key', 'is_api_active']
 
 
 
 admin = Admin(app, name='IsaKapov BettipsPanels', template_mode='bootstrap3', index_view=MyAdminIndexView())
 admin.add_view(UserAdmin(User, db.session))
-admin.add_view(APISettings(APISettings,db.session))
 admin.add_view(BettingTipsUser(BettingTip, db.session, endpoint='betting_tips_user_view'))
 admin.add_view(BettingTipAdmin(BettingTip, db.session))
 admin.add_view(LiveScoreUser(LiveScore, db.session, endpoint='live_scores_user_view'))
 admin.add_view(APIDocumentation(name='API Documentation', endpoint='api_documentation'))
+
+admin.add_view(APISettingsView(APISettings, db.session))
+
 
 
 
