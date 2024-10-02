@@ -905,27 +905,48 @@ def api_betting_tips():
         return jsonify({"error": "Your email or api key is wrong."}), 401
     if not user.is_premium:
         return jsonify({"error": "You should upgrade to premium for access API."}), 401
-    
-    api_settings = APISettings.query.first()
-    if not api_settings or not api_settings.is_api_active:
-        return jsonify({"error": "API is currently inactive."}), 503
-    
     run_update_user_subscription(user.id)
     if user and user.is_premium:
-        # Fetch data from the new API
-        api_url = 'https://bettipspro.com/api/betting-tips'  # Replace with actual API base URL
-        headers = {
-            "Email": api_settings.email,
-            "API-Key": api_settings.api_key
+        now = datetime.now()
+        last_48_hours = now - timedelta(hours=30)
+        tips = BettingTip.query.filter(BettingTip.match_date >= last_48_hours).all()
+        tips_dict = {
+            "football": {
+                str(tip.id): {
+                    "date": str(int(tip.match_date.timestamp())),
+                    "date_string": tip.match_date.strftime("%Y-%m-%d %H:%M"),
+                    "league": {
+                        "name": tip.league_name,
+                        "logo": tip.league_logo,  # Orijinal değişkeni doğrudan döndürüyoruz
+                        "flag": tip.league_flag,  # Orijinal değişkeni doğrudan döndürüyoruz
+                    },
+                    "team_home": {
+                        "name": tip.team_home_name,
+                        "logo": tip.team_home_logo,  # Orijinal değişkeni doğrudan döndürüyoruz
+                    },
+                    "team_away": {
+                        "name": tip.team_away_name,
+                        "logo": tip.team_away_logo,  # Orijinal değişkeni doğrudan döndürüyoruz
+                    },
+                    "prediction": {
+                        "type": tip.prediction_type,
+                        "name": tip.prediction_name,
+                        "rate": str(tip.prediction_rate),
+                    },
+                    "extras": {
+                        "halftime": tip.halftime,
+                        "fulltime": tip.fulltime,
+                        "odds": tip.odds,
+                    },
+                    "result": tip.result,
+                }
+                for tip in tips
+            }
         }
-        response = requests.get(api_url, headers=headers)
-        if response.status_code != 200:
-            return jsonify({"error": "Failed to fetch betting tips from API."}), 500
-        
-        data = response.json()
-        return jsonify(data)
+        return jsonify(tips_dict)
     else:
         return jsonify({"error": "Unauthorized"}), 401
+
 
     
 @app.route('/api/live-scores')
@@ -947,12 +968,9 @@ def api_live_scores():
     
     if user and user.is_premium:
         # Fetch data from the new API
-        api_url = 'https://bettipspro.com/api/live-scores'  # Replace with actual API base URL
-        headers = {
-            "Email": api_settings.email,
-            "API-Key": api_settings.api_key
-        }
-        response = requests.get(api_url, headers=headers)
+        api_url = 'https://berkbirkan.com/bettingtipsapi2023/livescores/list/bettingtipsACC22E6C-B566-4A97-9EE5-91D37EC699F9'  # Replace with actual API base URL
+       
+        response = requests.get(api_url)
         if response.status_code != 200:
             return jsonify({"error": "Failed to fetch live scores from API."}), 500
         
