@@ -1000,6 +1000,47 @@ def api_betting_tips():
         return jsonify(tips_dict)
     else:
         return jsonify({"error": "Unauthorized"}), 401
+    
+
+@app.route('/api/free-betting-tips')
+def api_free_betting_tips():
+        now = datetime.now()
+        last_48_hours = now - timedelta(hours=30)
+        tips = FreeBettingTip.query.filter(FreeBettingTip.match_date >= last_48_hours).all()
+        tips_dict = {
+            "football": {
+                str(tip.id): {
+                    "date": str(int(tip.match_date.timestamp())),
+                    "date_string": tip.match_date.strftime("%Y-%m-%d %H:%M"),
+                    "league": {
+                        "name": tip.league_name,
+                        "logo": tip.league_logo,  # Orijinal değişkeni doğrudan döndürüyoruz
+                        "flag": tip.league_flag,  # Orijinal değişkeni doğrudan döndürüyoruz
+                    },
+                    "team_home": {
+                        "name": tip.team_home_name,
+                        "logo": tip.team_home_logo,  # Orijinal değişkeni doğrudan döndürüyoruz
+                    },
+                    "team_away": {
+                        "name": tip.team_away_name,
+                        "logo": tip.team_away_logo,  # Orijinal değişkeni doğrudan döndürüyoruz
+                    },
+                    "prediction": {
+                        "type": tip.prediction_type,
+                        "name": tip.prediction_name,
+                        "rate": str(tip.prediction_rate),
+                    },
+                    "extras": {
+                        "halftime": tip.halftime,
+                        "fulltime": tip.fulltime,
+                        "odds": tip.odds,
+                    },
+                    "result": tip.result,
+                }
+                for tip in tips
+            }
+        }
+        return jsonify(tips_dict)
 
 
     
