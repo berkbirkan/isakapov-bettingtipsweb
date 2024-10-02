@@ -43,32 +43,24 @@ logger = logging.getLogger(__name__)
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'your_secret_key'
-# Veritabanı bağlantı bilgilerini ayrı değişkenlere kaydet
-username = 'berkbirkan'
-password = 'brkbrkn840?'
-host = 'localhost'
-port = '5432'
-database = 'bettipspro'
 
-# Bağlantı dizesini oluştur
-connection_string = f'postgresql://{username}:{password}@{host}:{port}/{database}'
 
 # SQLAlchemy ayarını güncelle
 app.config['SQLALCHEMY_DATABASE_URI'] =  os.getenv("DATABASE_URL", "postgresql://postgres:nStVzf5xlG8b8KD0WtgRRaFLtMLvNf1V6qJ8FZ7NRUDSWKazyzATwEAqF06qMgmJ@b0w8oo8g8k8gc04s0s8osow4:5432/postgres")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-app.config['MAIL_SERVER'] = 'mail.neuralabz.limited'
+app.config['MAIL_SERVER'] = 'YOUR_MAİL_SERVER'
 app.config['MAIL_PORT'] = 587 # default to 587 if MAIL_PORT is not set
-app.config['MAIL_USERNAME'] = 'support@neuralabz.limited'
-app.config['MAIL_PASSWORD'] = 'brkbrkn840?'
+app.config['MAIL_USERNAME'] = 'YOUR_EMAİL'
+app.config['MAIL_PASSWORD'] = 'YOUR_EMAİL_PASS'
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
 app.config['DEBUG'] = False
 app.config['MAIL_DEFAULT_SENDER'] = 'Betting Tips'
 mail = Mail(app)
 
-stripe.api_key = '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'
-endpoint_secret = 'whsec_hWqPcxEQD1vphyuOj9bEGrFz4iifrx6y'
+stripe.api_key = 'STRIPE_LİVE_SECRET_KEY'
+endpoint_secret = 'STRIPE_ENDPOİNT_SECRET'
 
 s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
@@ -186,6 +178,22 @@ class APISettings(db.Model):
 
 with app.app_context():
     db.create_all()
+
+    # Admin kullanıcısını kontrol et ve oluştur
+    admin_user = User.query.filter_by(username='admin').first()
+    if not admin_user:
+        admin_user = User(
+            username='admin',
+            email='admin@admin.com',
+            password=generate_password_hash('123123123'),
+            is_premium=True,
+            is_admin=True,
+            api_key=str(uuid.uuid4()),  # API anahtarı gerekiyorsa
+            package='Premium'  # İsteğe bağlı olarak paket bilgisi
+        )
+        db.session.add(admin_user)
+        db.session.commit()
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -328,7 +336,7 @@ def fetch_live_scores():
         logger.info("API is inactive. Skipping fetch_live_scores.")
         return {}
 
-    api_url = 'https://yourapi.com/api/live-scores'  # Replace with actual API base URL
+    api_url = 'https://bettipspro.com/api/live-scores'  # Replace with actual API base URL
     headers = {
         "Email": api_settings.email,
         "API-Key": api_settings.api_key
@@ -877,7 +885,7 @@ def api_live_scores():
     
     if user and user.is_premium:
         # Fetch data from the new API
-        api_url = 'https://yourapi.com/api/live-scores'  # Replace with actual API base URL
+        api_url = 'https://bettipspro.com/api/live-scores'  # Replace with actual API base URL
         headers = {
             "Email": api_settings.email,
             "API-Key": api_settings.api_key
