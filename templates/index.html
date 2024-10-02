@@ -141,12 +141,12 @@
                         <div class="analysis-item">
                           <h4>{{ analysis.league_name }}</h4>
                           <div class="team-icons">
-                            <img src="https://images.tipsterman.com/football/teams/{{ analysis.home_logo }}" alt="{{ analysis.home_team }} Logo" class="team-logo">
+                            <img src="{{ analysis.home_logo }}" alt="{{ analysis.home_team }} Logo" class="team-logo">
                             <div class="match-info">
                               <span class="score">{{ analysis.score }}</span>
                               <span class="prediction">Prediction: {{ analysis.prediction }}</span>
                             </div>
-                            <img src="https://images.tipsterman.com/football/teams/{{ analysis.away_logo }}" alt="{{ analysis.away_team }} Logo" class="team-logo">
+                            <img src="{{ analysis.away_logo }}" alt="{{ analysis.away_team }} Logo" class="team-logo">
                           </div>
                           <p>{{ analysis.home_team }} vs {{ analysis.away_team }}</p>
                         </div>
