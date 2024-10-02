@@ -430,6 +430,9 @@ class LiveScoreUser(ModelView):
 
 # Flask-Admin'de ModelView sınıfını kullanarak APISettings modelini ekle
 class APISettingsView(ModelView):
+    def __init__(self, *args, **kwargs):
+        super(APISettingsView, self).__init__(*args, **kwargs)
+        self.name = "Bettipspro API Settings"
     # Liste görünümünde gösterilecek sütunları belirliyoruz
     column_list = ['email', 'api_key', 'is_api_active']
 
