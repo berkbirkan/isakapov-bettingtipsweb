@@ -896,4 +896,4 @@ def api_live_scores():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(port=5006,debug=False,host='0.0.0.0')
+    app.run(port=5007,debug=False,host='0.0.0.0')
