@@ -1,0 +1,209 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+
+<head>
+    <a href="https://wa.me/905522071696" target="_blank" title="Reach us via WhatsApp" style="position: fixed; bottom: 60px; right: 20px; display: inline-block; width: 60px; height: 60px; z-index: 1000;">
+
+        <svg height="60px" width="60px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+             viewBox="0 0 58 58" xml:space="preserve">
+        <g>
+            <path style="fill:#2CB742;" d="M0,58l4.988-14.963C2.457,38.78,1,33.812,1,28.5C1,12.76,13.76,0,29.5,0S58,12.76,58,28.5
+                S45.24,57,29.5,57c-4.789,0-9.299-1.187-13.26-3.273L0,58z"/>
+            <path style="fill:#FFFFFF;" d="M47.683,37.985c-1.316-2.487-6.169-5.331-6.169-5.331c-1.098-0.626-2.423-0.696-3.049,0.42
+                c0,0-1.577,1.891-1.978,2.163c-1.832,1.241-3.529,1.193-5.242-0.52l-3.981-3.981l-3.981-3.981c-1.713-1.713-1.761-3.41-0.52-5.242
+                c0.272-0.401,2.163-1.978,2.163-1.978c1.116-0.627,1.046-1.951,0.42-3.049c0,0-2.844-4.853-5.331-6.169
+                c-1.058-0.56-2.357-0.364-3.203,0.482l-1.758,1.758c-5.577,5.577-2.831,11.873,2.746,17.45l5.097,5.097l5.097,5.097
+                c5.577,5.577,11.873,8.323,17.45,2.746l1.758-1.758C48.048,40.341,48.243,39.042,47.683,37.985z"/>
+        </g>
+        </svg>
+        
+    </a>
+    
+    
+    
+        
+    <!-- Diğer meta ve link tagları -->
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2146803129026727');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2146803129026727&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+    
+    <!-- Diğer head içerikleri -->
+</head>
+
+<div class="custom-index">
+    <h1>Welcome, {{ current_user.username }}!</h1>
+</div>
+<br><br>
+
+<div class="card card-custom mb-4">
+    <div class="card-header card-header-custom">
+        Your Membership
+    </div>
+    <div class="card-body card-body-custom">
+        <h5 class="card-title">Subscription Type: {{ current_user.package }}</h5>
+        <p class="card-text"><strong>Renewal Date:</strong> {{ current_user.renewal_date }}</p>
+    </div>
+    <div class="card-footer card-footer-custom">
+        <a href="#" class="btn btn-primary">Manage Membership</a>
+    </div>
+</div>
+
+<br><br>
+
+<div class="d-flex justify-content-center mb-4">
+    <button id="monthlyButton" class="btn btn-primary mr-2" onclick="showMonthly()">Monthly</button>
+    <button id="annualButton" class="btn btn-secondary" onclick="showAnnual()">Annual</button>
+</div>
+
+<div id="monthlyPackages">
+    <div class="columns">
+        <ul class="price">
+            <li class="header">Premium</li>
+            <li class="grey">$ 19 / Month</li>
+            <li>Betting Tips & Predictions For All Leagues</li>
+            <li>Live Scores</li>
+            <li>API Access for Betting Tips & Live Scores</li>
+            <li class="grey">
+                {% if current_user.package != 'PremiumMonthly' %}
+                <a href="{{ url_for('create_checkout_session', price_id='price_1PigFYDDedIabPkx14Jzrrbt', user_id=current_user.id) }}" class="button">Sign Up</a>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div id="annualPackages" style="display:none;">
+    <div class="columns">
+        <ul class="price">
+            <li class="header">Premium</li>
+            <li class="grey">$ 159 / Year</li>
+            <li>Betting Tips & Predictions For All Leagues</li>
+            <li>Live Scores</li>
+            <li>API Access for Betting Tips & Live Scores</li>
+            <li class="grey">
+                {% if current_user.package != 'PremiumAnnual' %}
+                <a href="{{ url_for('create_checkout_session', price_id='price_1PigFyDDedIabPkxUelxZ3gp', user_id=current_user.id) }}" class="button">Sign Up</a>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+</div>
+<script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+<div class="elfsight-app-040b3752-1835-4559-8930-5389da76e961" data-elfsight-app-lazy></div>
+<script>
+    function showMonthly() {
+        document.getElementById('monthlyPackages').style.display = 'block';
+        document.getElementById('annualPackages').style.display = 'none';
+        document.getElementById('monthlyButton').classList.add('btn-primary');
+        document.getElementById('monthlyButton').classList.remove('btn-secondary');
+        document.getElementById('annualButton').classList.add('btn-secondary');
+        document.getElementById('annualButton').classList.remove('btn-primary');
+    }
+
+    function showAnnual() {
+        document.getElementById('monthlyPackages').style.display = 'none';
+        document.getElementById('annualPackages').style.display = 'block';
+        document.getElementById('monthlyButton').classList.add('btn-secondary');
+        document.getElementById('monthlyButton').classList.remove('btn-primary');
+        document.getElementById('annualButton').classList.add('btn-primary');
+        document.getElementById('annualButton').classList.remove('btn-secondary');
+    }
+</script>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .columns {
+        float: left;
+        width: 33.3%;
+        padding: 8px;
+    }
+
+    .price {
+        list-style-type: none;
+        border: 1px solid #eee;
+        margin: 0;
+        padding: 0;
+        -webkit-transition: 0.3s;
+        transition: 0.3s;
+    }
+
+    .price:hover {
+        box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
+    }
+
+    .price .header {
+        background-color: #111;
+        color: white;
+        font-size: 25px;
+    }
+
+    .price li {
+        border-bottom: 1px solid #eee;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .price .grey {
+        background-color: #eee;
+        font-size: 20px;
+    }
+
+    .button {
+        background-color: #04AA6D;
+        border: none;
+        color: white;
+        padding: 10px 25px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 18px;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .columns {
+            width: 100%;
+        }
+    }
+
+    .card-custom {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+    .card-custom:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    .card-header-custom {
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #ddd;
+        font-weight: bold;
+    }
+    .card-body-custom {
+        background-color: #ffffff;
+    }
+    .card-footer-custom {
+        background-color: #f8f9fa;
+        border-top: 1px solid #ddd
+    }
+</style>
+{% endblock %}
+

@@ -1,0 +1,547 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>BetTipsPro - Betting Tips & Live Score</title>
+  <meta content="BetTipsPro provides the best betting tips with live scores and premium subscription services." name="description">
+  <meta content="BetTipsPro, betting tips, live scores, premium subscription" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins&family=Jost&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <a href="https://wa.me/905522071696" target="_blank" title="Reach us via WhatsApp" style="position: fixed; bottom: 60px; right: 20px; display: inline-block; width: 60px; height: 60px; z-index: 1000;">
+
+    <svg height="60px" width="60px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+         viewBox="0 0 58 58" xml:space="preserve">
+    <g>
+        <path style="fill:#2CB742;" d="M0,58l4.988-14.963C2.457,38.78,1,33.812,1,28.5C1,12.76,13.76,0,29.5,0S58,12.76,58,28.5
+            S45.24,57,29.5,57c-4.789,0-9.299-1.187-13.26-3.273L0,58z"/>
+        <path style="fill:#FFFFFF;" d="M47.683,37.985c-1.316-2.487-6.169-5.331-6.169-5.331c-1.098-0.626-2.423-0.696-3.049,0.42
+            c0,0-1.577,1.891-1.978,2.163c-1.832,1.241-3.529,1.193-5.242-0.52l-3.981-3.981l-3.981-3.981c-1.713-1.713-1.761-3.41-0.52-5.242
+            c0.272-0.401,2.163-1.978,2.163-1.978c1.116-0.627,1.046-1.951,0.42-3.049c0,0-2.844-4.853-5.331-6.169
+            c-1.058-0.56-2.357-0.364-3.203,0.482l-1.758,1.758c-5.577,5.577-2.831,11.873,2.746,17.45l5.097,5.097l5.097,5.097
+            c5.577,5.577,11.873,8.323,17.45,2.746l1.758-1.758C48.048,40.341,48.243,39.042,47.683,37.985z"/>
+    </g>
+    </svg>
+    
+</a>
+
+
+
+    
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  
+    <!-- Diğer meta ve link tagları -->
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2146803129026727');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2146803129026727&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+    
+    <!-- Diğer head içerikleri -->
+
+
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="https://bettipspro.com" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">BetTipsPro</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="{{ url_for('login') }}">Get Started</a>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
+            <h1>Betting Tips & Live Scores</h1>
+            <p>Use our AI-based Betting Tips and Live Scores API. </p>
+            <div class="d-flex">
+              <a href="{{ url_for('login') }}" class="btn-get-started">Get Started</a>
+            </div>
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="200">
+            <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /Hero Section -->
+
+    <section id="successful-analyses" class="section light-background">
+
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Successful Analyses</h2>
+        <p>{{ header_text }}</p>
+      </div>
+    
+      <div class="container">
+        <div id="analysesCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            {% for chunk in analyses|batch(6, fill_with=None) %}
+              <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
+                <div class="row gy-4">
+                  {% for analysis in chunk %}
+                    {% if analysis %}
+                      <div class="col-lg-4 col-md-6 d-flex">
+                        <div class="analysis-item">
+                          <h4>{{ analysis.league_name }}</h4>
+                          <div class="team-icons">
+                            <img src="https://images.tipsterman.com/football/teams/{{ analysis.home_logo }}" alt="{{ analysis.home_team }} Logo" class="team-logo">
+                            <div class="match-info">
+                              <span class="score">{{ analysis.score }}</span>
+                              <span class="prediction">Prediction: {{ analysis.prediction }}</span>
+                            </div>
+                            <img src="https://images.tipsterman.com/football/teams/{{ analysis.away_logo }}" alt="{{ analysis.away_team }} Logo" class="team-logo">
+                          </div>
+                          <p>{{ analysis.home_team }} vs {{ analysis.away_team }}</p>
+                        </div>
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#analysesCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#analysesCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    
+    </section>
+    
+    <!-- Additional CSS -->
+    <style>
+      .analysis-item {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .analysis-item h4 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+      .analysis-item .team-icons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+      }
+      .analysis-item .team-logo {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+      }
+      .analysis-item .match-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 10px;
+      }
+      .analysis-item .score {
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+      .analysis-item .prediction {
+        font-size: 1rem;
+        color: #666;
+      }
+      .carousel-control-prev-icon,
+      .carousel-control-next-icon {
+        background-color: #000;
+        border-radius: 50%;
+      }
+      .carousel-indicators {
+        position: absolute;
+        bottom: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .carousel-indicators li {
+        background-color: #000;
+      }
+    </style>
+    
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>About Us</h2>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+            <p>BetTipsPro provides expert betting tips and real-time live scores to help you make informed decisions and maximize your betting success.</p>
+            <ul>
+              <li><i class="bi bi-check2-circle"></i> Expert betting tips.</li>
+              <li><i class="bi bi-check2-circle"></i> Real-time live scores.</li>
+              <li><i class="bi bi-check2-circle"></i> Premium subscription options.</li>
+            </ul>
+          </div>
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <p>Our team of experienced analysts and advanced algorithms work together to provide you with the most accurate predictions and updates.</p>
+            <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /About Section -->
+
+    <!-- Services Section -->
+    <section id="services" class="services section light-background">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Services</h2>
+        <p>Explore the range of services we offer to enhance your betting experience.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-xl-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item position-relative">
+              <div class="icon"><i class="bi bi-activity icon"></i></div>
+              <h4><a href="" class="stretched-link">Betting Tips</a></h4>
+              <p>Get the most accurate betting tips from our AI & Machine Learning algorithms.</p>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-xl-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-item position-relative">
+              <div class="icon"><i class="bi bi-bounding-box-circles icon"></i></div>
+              <h4><a href="" class="stretched-link">Live Scores</a></h4>
+              <p>Stay updated with real-time live scores of ongoing matches.</p>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-xl-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-item position-relative">
+              <div class="icon"><i class="bi bi-calendar4-week icon"></i></div>
+              <h4><a href="" class="stretched-link">API Access</a></h4>
+              <p>We provide API access for developers who need to betting tips and live score data for their apps.</p>
+            </div>
+          </div><!-- End Service Item -->
+
+        </div>
+      </div>
+    </section><!-- /Services Section -->
+<!-- Pricing Section -->
+<section id="pricing" class="pricing section light-background">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+      <h2>Pricing</h2>
+      <p>Choose a plan that suits your needs and start winning today.</p>
+    </div><!-- End Section Title -->
+  
+    <div class="container">
+      <div class="row gy-4">
+  
+        <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="100">
+          <div class="pricing-item">
+            <h3>Premium Monthly</h3>
+            <h4><sup>$</sup>19<span> / month</span></h4>
+            <ul>
+              <li><i class="bi bi-check"></i> AI-powered betting tips</li>
+              <li><i class="bi bi-check"></i> Live scores</li>
+              <li><i class="bi bi-check"></i> Access to premium tips</li>
+              <li><i class="bi bi-check"></i> Comprehensive live score updates</li>
+              <li><i class="bi bi-check"></i> Ad-free experience</li>
+              <li><i class="bi bi-check"></i> Exclusive insights</li>
+              <li><i class="bi bi-check"></i> Developer API access for both betting tips and live scores</li>
+            </ul>
+            <div class="text-center">
+              {% if current_user.is_authenticated and current_user.package != 'PremiumMonthly' %}
+              <a href="{{ url_for('create_checkout_session', price_id='price_1PigFYDDedIabPkx14Jzrrbt', user_id=current_user.id) }}" class="buy-btn">Get Started</a>
+              {% elif not current_user.is_authenticated %}
+              <a href="{{ url_for('login') }}" class="buy-btn">Get Started</a>
+              {% endif %}
+            </div>
+          </div>
+        </div><!-- End Pricing Item -->
+  
+        <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="200">
+          <div class="pricing-item">
+            <h3>Premium Annual</h3>
+            <h4><sup>$</sup>159<span> / year</span></h4>
+            <ul>
+                <li><i class="bi bi-check"></i> AI-powered Betting Tips</li>
+                <li><i class="bi bi-check"></i> Live Scores</li>
+                <li><i class="bi bi-check"></i> Access to premium tips</li>
+                <li><i class="bi bi-check"></i> Comprehensive live score updates</li>
+                <li><i class="bi bi-check"></i> Ad-free experience</li>
+                <li><i class="bi bi-check"></i> Exclusive insights</li>
+                <li><i class="bi bi-check"></i> Developer API access for both betting tips and live scores</li>
+            </ul>
+            <div class="text-center">
+              {% if current_user.is_authenticated and current_user.package != 'PremiumAnnual' %}
+              <a href="{{ url_for('create_checkout_session', price_id='price_1PigFyDDedIabPkxUelxZ3gp', user_id=current_user.id) }}" class="buy-btn">Get Started</a>
+              {% elif not current_user.is_authenticated %}
+              <a href="{{ url_for('login') }}" class="buy-btn">Get Started</a>
+              {% endif %}
+            </div>
+          </div>
+        </div><!-- End Pricing Item -->
+  
+      </div>
+    </div>
+  
+  </section><!-- /Pricing Section -->
+  
+  
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Contact</h2>
+        <p>Get in touch with us for any queries or support.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4">
+          <div class="col-lg-5">
+            <div class="info-wrap">
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+                <i class="bi bi-geo-alt flex-shrink-0"></i>
+                <div>
+                  <h3>Address</h3>
+                  <p>71-75 Shelton Street, Covent Garden</p>
+                  <p>London, WC2H 9JQ</p>
+                  <p>United Kingdom</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+                <i class="bi bi-telephone flex-shrink-0"></i>
+                <div>
+                  <h3>Whatsapp</h3>
+                  <p>+90 552 207 1696</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+                <i class="bi bi-envelope flex-shrink-0"></i>
+                <div>
+                  <h3>Email Us</h3>
+                  <p>info@bettipspro.com</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus" frameborder="0" style="border:0; width: 100%; height: 270px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+
+          <div class="col-lg-7">
+            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+              <div class="row gy-4">
+                <div class="col-md-6">
+                  <label for="name-field" class="pb-2">Your Name</label>
+                  <input type="text" name="name" id="name-field" class="form-control" required="">
+                </div>
+
+                <div class="col-md-6">
+                  <label for="email-field" class="pb-2">Your Email</label>
+                  <input type="email" class="form-control" name="email" id="email-field" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <label for="subject-field" class="pb-2">Subject</label>
+                  <input type="text" class="form-control" name="subject" id="subject-field" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <label for="message-field" class="pb-2">Message</label>
+                  <textarea class="form-control" name="message" rows="10" id="message-field" required=""></textarea>
+                </div>
+
+                <div class="col-md-12 text-center">
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                  <button type="submit">Send Message</button>
+                </div>
+
+              </div>
+            </form>
+          </div><!-- End Contact Form -->
+
+        </div>
+      </div>
+
+    </section><!-- /Contact Section -->
+
+  </main>
+
+  <footer id="footer" class="footer">
+    <div class="footer-newsletter">
+      <div class="container">
+        <div class="row justify-content-center text-center">
+          <div class="col-lg-6">
+            <h4>Join Our Newsletter</h4>
+            <p>Subscribe to our newsletter and receive the latest news about our tips and services!</p>
+            <form action="forms/newsletter.php" method="post" class="php-email-form">
+              <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">Your subscription request has been sent. Thank you!</div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="index.html" class="d-flex align-items-center">
+            <span class="sitename">BetTipsPro</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>71-75 Shelton Street, Covent Garden</p>
+            <p>London, United Kingdom</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+90 552 207 1696</span></p>
+            <p><strong>Email:</strong> <span>info@berkbirkan.com</span></p>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Betting Tips</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Live Scores</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Premium Membership</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-12">
+          <h4>Follow Us</h4>
+          <p>Follow us on social media for the latest updates and tips.</p>
+          <div class="social-links d-flex">
+            <a href=""><i class="bi bi-twitter"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">BetTipsPro 2024 </strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        Developed by <a href="https://neuralabz.limited/">NEURALABZ LTD</a>
+      </div>
+    </div>
+
+    <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+<div class="elfsight-app-040b3752-1835-4559-8930-5389da76e961" data-elfsight-app-lazy></div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

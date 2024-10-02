@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: flask run --host=0.0.0.0 --port=5006
+    environment:
+      FLASK_APP: app.py
+      FLASK_ENV: development
+      DATABASE_URL: postgresql://berkbirkan:brkbrkn840@n4wwwo8:5432/bettipspro
+    ports:
+      - "5006:5006"
+    volumes:
+      - myimages:/app/assets
+  
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8089:8080"
+
+volumes:
+  myimages:
+    driver: local
