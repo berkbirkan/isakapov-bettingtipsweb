@@ -313,6 +313,46 @@ class BettingTipsUser(ModelView):
         
         # Pass grouped tips and league info to the template
         return self.render('admin/betting_tips.html', grouped_tips=grouped_tips, league_info=league_info)
+    
+
+
+class FreeBettingTipsUser(ModelView):
+    def is_accessible(self):
+        return current_user.is_authenticated
+    
+    @expose('/')
+    @login_required
+    def index(self):
+        if current_user:
+            run_update_user_subscription(current_user.id)
+        # Fetch betting tips from the database
+        now = datetime.utcnow()
+        one_day_ago = now - timedelta(days=1)
+        
+        tips = FreeBettingTip.query.filter(FreeBettingTip.match_date >= one_day_ago).all()
+
+        # Filter tips to limit result=2 to a maximum of 3
+        result_2_tips = [tip for tip in tips if tip.result == '2']
+        if len(result_2_tips) > 3:
+            result_2_tips = result_2_tips[:3]
+        
+        # Merge filtered result=2 tips with other tips
+        other_tips = [tip for tip in tips if tip.result != '2']
+        tips = other_tips + result_2_tips
+        
+        # Group tips by league name
+        grouped_tips = defaultdict(list)
+        league_info = {}
+        for tip in tips:
+            grouped_tips[tip.league_name].append(tip)
+            if tip.league_name not in league_info:
+                league_info[tip.league_name] = {
+                    "name": tip.league_name,
+                    "logo": tip.league_logo
+                }
+        
+        # Pass grouped tips and league info to the template
+        return self.render('admin/free_betting_tips.html', grouped_tips=grouped_tips, league_info=league_info)
 
 
 def update_user_subscription(user_id):
@@ -447,6 +487,7 @@ class APISettingsView(ModelView):
 admin = Admin(app, name='IsaKapov BettipsPanels', template_mode='bootstrap3', index_view=MyAdminIndexView())
 admin.add_view(UserAdmin(User, db.session))
 admin.add_view(BettingTipsUser(BettingTip, db.session, endpoint='betting_tips_user_view'))
+admin.add_view(FreeBettingTipsUser(FreeBettingTip, db.session, endpoint='free_betting_tips_user_view'))
 admin.add_view(BettingTipAdmin(BettingTip, db.session))
 
 
