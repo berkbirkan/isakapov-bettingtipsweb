@@ -266,6 +266,16 @@ class BettingTipAdmin(ModelView):
         if current_user.is_admin:
             return super(BettingTipAdmin, self).index_view()
         
+
+class BettingTipFreeAdmin(ModelView):
+    def is_accessible(self):
+        return current_user.is_authenticated and current_user.is_admin
+
+    @expose('/')
+    def index_view(self):
+        if current_user.is_admin:
+            return super(BettingTipFreeAdmin, self).index_view()
+        
 class BettingTipsUser(ModelView):
     def is_accessible(self):
         return current_user.is_authenticated
@@ -435,6 +445,12 @@ admin = Admin(app, name='IsaKapov BettipsPanels', template_mode='bootstrap3', in
 admin.add_view(UserAdmin(User, db.session))
 admin.add_view(BettingTipsUser(BettingTip, db.session, endpoint='betting_tips_user_view'))
 admin.add_view(BettingTipAdmin(BettingTip, db.session))
+
+
+
+admin.add_view(BettingTipFreeAdmin(FreeBettingTip, db.session))
+
+
 admin.add_view(LiveScoreUser(LiveScore, db.session, endpoint='live_scores_user_view'))
 admin.add_view(APIDocumentation(name='API Documentation', endpoint='api_documentation'))
 
