@@ -90,7 +90,7 @@
 
     {% for league_name, tips in grouped_tips.items() %}
         <div class="league-header d-flex align-items-center">
-            <img src="https://images.tipsterman.com/football/leagues/{{ league_info[league_name].logo }}" alt="{{ league_info[league_name].name }} Logo" class="league-logo">
+            <img src="{{ league_info[league_name].logo }}" alt="{{ league_info[league_name].name }} Logo" class="league-logo">
             <h2>{{ league_info[league_name].name }}</h2>
         </div>
         <table class="table table-bordered">
@@ -110,12 +110,12 @@
                         <td>{{ tip.match_date.strftime('%Y-%m-%d %H:%M') }}</td>
                         <td>
                             <div class="team-home">
-                                <img src="https://images.tipsterman.com/football/teams/{{ tip.team_home_logo }}" alt="{{ tip.team_home_name }} Logo" class="team-logo">
+                                <img src="{{ tip.team_home_logo }}" alt="{{ tip.team_home_name }} Logo" class="team-logo">
                                 {{ tip.team_home_name }}
                             </div>
                             <div class="team-away">
                                 {{ tip.team_away_name }}
-                                <img src="https://images.tipsterman.com/football/teams/{{ tip.team_away_logo }}" alt="{{ tip.team_away_name }} Logo" class="team-logo">
+                                <img src="{{ tip.team_away_logo }}" alt="{{ tip.team_away_name }} Logo" class="team-logo">
                             </div>
                         </td>
                         <td>
