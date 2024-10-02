@@ -11,7 +11,7 @@ services:
       DATABASE_URL:  postgresql://berkbirkan:brkbrkn840?@n4wwwo8:5432/bettipspro
     
     ports:
-      - "5006:5006"
+      - "5007:5007"
     volumes:
       - myimages:/app/assets
   
