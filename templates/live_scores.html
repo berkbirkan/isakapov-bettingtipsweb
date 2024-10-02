@@ -27,7 +27,7 @@
 </style>
 
 <head>
-    <a href="https://wa.me/905522071696" target="_blank" title="Reach us via WhatsApp" style="position: fixed; bottom: 60px; right: 20px; display: inline-block; width: 60px; height: 60px; z-index: 1000;">
+    <a href="https://wa.me/34662411265" target="_blank" title="Reach us via WhatsApp" style="position: fixed; bottom: 60px; right: 20px; display: inline-block; width: 60px; height: 60px; z-index: 1000;">
 
         <svg height="60px" width="60px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
              viewBox="0 0 58 58" xml:space="preserve">
@@ -75,7 +75,7 @@
 
     {% for league_name, matches in grouped_scores.items() %}
         <div class="league-header d-flex align-items-center">
-            <img src="https://images.tipsterman.com/football/leagues/{{ league_info[league_name].logo }}" alt="{{ league_info[league_name].name }} Logo" class="league-logo">
+            <img src="{{ league_info[league_name].logo }}" alt="{{ league_info[league_name].name }} Logo" class="league-logo">
             <h2>{{ league_info[league_name].name }}</h2>
         </div>
         <table class="table table-bordered">
@@ -93,12 +93,12 @@
                     <tr>
                         <td>
                             <div class="team-home">
-                                <img src="https://images.tipsterman.com/football/teams/{{ match.team_home.logo }}" alt="{{ match.team_home.name }} Logo" class="team-logo">
+                                <img src="{{ match.team_home.logo }}" alt="{{ match.team_home.name }} Logo" class="team-logo">
                                 {{ match.team_home.name }}
                             </div>
                             <div class="team-away">
                                 {{ match.team_away.name }}
-                                <img src="https://images.tipsterman.com/football/teams/{{ match.team_away.logo }}" alt="{{ match.team_away.name }} Logo" class="team-logo">
+                                <img src="{{ match.team_away.logo }}" alt="{{ match.team_away.name }} Logo" class="team-logo">
                             </div>
                         </td>
                         <td>{{ match.livescore }}</td>
