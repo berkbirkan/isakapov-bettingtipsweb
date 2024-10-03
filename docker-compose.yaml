@@ -8,7 +8,7 @@ services:
     environment:
       FLASK_APP: app.py
       FLASK_ENV: development
-      DATABASE_URL:  postgresql://postgres:nStVzf5xlG8b8KD0WtgRRaFLtMLvNf1V6qJ8FZ7NRUDSWKazyzATwEAqF06qMgmJ@b0w8oo8g8k8gc04s0s8osow4:5432/postgres
+      DATABASE_URL:  postgres://postgres:J6F9uzZ9au06Oj1KI7h3LxGFhlZx4isBpT91M01s4H6QlrA1xKgmfT86GUjwtbS6@tkso0s4g8g4wo0w0w8owggwo:5432/postgres
     
     ports:
       - "5017:5017"
