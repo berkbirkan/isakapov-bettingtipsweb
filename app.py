@@ -47,7 +47,7 @@ app.config['SECRET_KEY'] = 'your_secret_key'
 
 
 # SQLAlchemy ayarını güncelle
-app.config['SQLALCHEMY_DATABASE_URI'] =  os.getenv("DATABASE_URL", "postgres://postgres:J6F9uzZ9au06Oj1KI7h3LxGFhlZx4isBpT91M01s4H6QlrA1xKgmfT86GUjwtbS6@tkso0s4g8g4wo0w0w8owggwo:5432/postgres")
+app.config['SQLALCHEMY_DATABASE_URI'] =  os.getenv("DATABASE_URL", "postgresql://postgres:J6F9uzZ9au06Oj1KI7h3LxGFhlZx4isBpT91M01s4H6QlrA1xKgmfT86GUjwtbS6@tkso0s4g8g4wo0w0w8owggwo:5432/postgres")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 app.config['MAIL_SERVER'] = 'YOUR_MAİL_SERVER'
