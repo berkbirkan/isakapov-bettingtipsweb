@@ -1055,9 +1055,7 @@ def api_live_scores():
     if not user.is_premium:
         return jsonify({"error": "You should upgrade to premium for access API."}), 401
     
-    api_settings = APISettings.query.first()
-    if not api_settings or not api_settings.is_api_active:
-        return jsonify({"error": "API is currently inactive."}), 503
+  
     
     run_update_user_subscription(user.id)
     
